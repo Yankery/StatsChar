@@ -1,0 +1,405 @@
+package Main;
+import utils.*;
+/**
+ * @overview represent a list of character's stats
+ * @attributes
+ * HP int
+ * STR int
+ * MAG int
+ * DEF int
+ * RES int
+ * SKL int
+ * SPD int
+ * LUK int
+ * MOV int
+ * CON int
+ * LoS int
+ * @object a typical StatsChar is stats = <HP, STR, MAG, DEF, RES, SKL, SPD, LUK, MOV, CON, LoS>
+ * @abstract_properties
+ * mutable (HP) = true /\ optional (HP) = false /\ min (HP) = 0 /\
+ * mutable (STR) = true /\ optional (STR) = false /\ min (STR) = 0 /\
+ * mutable (MAG) = true /\ optional (MAG) = false /\ min (MAG) = 0 /\
+ * mutable (DEF) = true /\ optional (DEF) = false /\ min (DEF) = 0 /\
+ * mutable (RES) = true /\ optional (RES) = false /\ min (RES) = 0 /\
+ * mutable (SKL) = true /\ optional (SKL) = false /\ min (SKL) = 0 /\
+ * mutable (SPD) = true /\ optional (SPD) = false /\ min (SPD) = 0 /\
+ * mutable (LUK) = true /\ optional (LUK) = false /\ min (LUK) = 0 /\
+ * mutable (MOV) = true /\ optional (MOV) = false /\ min (MOV) = 0 /\
+ * mutable (CON) = true /\ optional (CON) = false /\ min (CON) = 0 /\
+ * mutable (LoS) = true /\ optional (LoS) = false /\ min (LoS) = 0 /\
+ */
+public class StatsChar {
+// state spec
+	@DomainConstraint(type = "int", mutable = true, optional = false, min = 0)
+	private int HP;
+	@DomainConstraint(type = "int", mutable = true, optional = false, min = 0)
+	private int STR;
+	@DomainConstraint(type = "int", mutable = true, optional = false, min = 0)
+	private int MAG;
+	@DomainConstraint(type = "int", mutable = true, optional = false, min = 0)
+	private int DEF;
+	@DomainConstraint(type = "int", mutable = true, optional = false, min = 0)
+	private int RES;
+	@DomainConstraint(type = "int", mutable = true, optional = false, min = 0)
+	private int SKL;
+	@DomainConstraint(type = "int", mutable = true, optional = false, min = 0)
+	private int SPD;
+	@DomainConstraint(type = "int", mutable = true, optional = false, min = 0)
+	private int LUK;
+	@DomainConstraint(type = "int", mutable = true, optional = false, min = 0)
+	private int MOV;
+	@DomainConstraint(type = "int", mutable = true, optional = false, min = 0)
+	private int CON;
+	@DomainConstraint(type = "int", mutable = true, optional = false, min = 0)
+	private int LoS;
+	
+	/**
+	 * @effects <pre> 
+	 * if all specs are valid
+	 *  initialize this as <HP, STR, MAG, DEF, RES, SKL, SPD, LUK, MOV, CON, LoS>
+	 *  else 
+	 *  throw NotPossibleException
+	 *  </pre>
+	 */
+	public StatsChar (@AttrRef("HP") int HP, @AttrRef("STR") int STR, @AttrRef("MAG") int MAG, @AttrRef("DEF") int DEF, 
+			@AttrRef("RES") int RES, @AttrRef("SKL") int SKL, @AttrRef("SPD") int SPD, @AttrRef("LUK") int LUK, @AttrRef("MOV") int MOV, 
+			@AttrRef("CON") int CON, @AttrRef("LoS") int LoS) {
+		if(validate(HP) && validate(STR) && validate(MAG) && validate(DEF) && validate(RES) && validate(SKL) && validate(SPD)
+				&& validate(LUK) && validate (MOV) && validate(CON) && validate (LoS)) {
+			this.HP = HP;
+			this.STR = STR;
+			this.MAG = MAG;
+			this.DEF = DEF;
+			this.RES = RES;
+			this.SKL = SKL;
+			this.SPD = SPD;
+			this.LUK = LUK;
+			this.MOV = MOV;
+			this.CON = CON;
+			this.LoS = LoS;
+		} else {
+			throw new NotPossibleException("Invalid data!");
+		}
+	}
+	/**
+	 * @effects <pre>
+	 * if stat is valid
+	 * return true
+	 * else
+	 * return false
+	 * </pre>
+	 */
+	private boolean validate(int stat) {
+		if (stat >= 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	/**
+	 * @effects <pre>
+	 * return this.HP
+	 * </pre>
+	 */
+	public int getHP (int HP) {
+		return this.HP;
+	}
+	/**
+	 * @effects <pre>
+	 * return this.STR
+	 * </pre>
+	 */
+	public int getSTR (int STR) {
+		return this.STR;
+	}
+	/**
+	 * @effects <pre>
+	 * return this.MAG
+	 * </pre>
+	 */
+	public int getMAG (int MAG) {
+		return this.MAG;
+	}
+	/**
+	 * @effects <pre>
+	 * return this.DEF
+	 * </pre>
+	 */
+	public int getDEF (int DEF) {
+		return this.DEF;
+	}
+	/**
+	 * @effects <pre>
+	 * return this.RES
+	 * </pre>
+	 */
+	public int getRES (int RES) {
+		return this.RES;
+	}
+	/**
+	 * @effects <pre>
+	 * return this.SKL
+	 * </pre>
+	 */
+	public int getSKL (int SKL) {
+		return this.SKL;
+	}
+	/**
+	 * @effects <pre>
+	 * return this.SPD
+	 * </pre>
+	 */
+	public int getSPD (int SPD) {
+		return this.SPD;
+	}
+	/**
+	 * @effects <pre>
+	 * return this.LUK
+	 * </pre>
+	 */
+	public int getLUK (int LUK) {
+		return this.LUK;
+	}
+	/**
+	 * @effects <pre>
+	 * return this.MOV
+	 * </pre>
+	 */
+	public int getMOV (int MOV) {
+		return this.MOV;
+	}
+	/**
+	 * @effects <pre>
+	 * return this.LoS
+	 * </pre>
+	 */
+	public int getLoS (int LoS) {
+		return this.LoS;
+	}
+	/**
+	 * @effects <pre>
+	 * return this.CON
+	 * </pre>
+	 */
+	public int getCON (int CON) {
+		return this.CON;
+	}
+	
+	/**
+	 * @modifies this.HP
+	 * @effects <pre>
+	 * if newHP is valid
+	 * set this.HP = newHP
+	 * return true
+	 * else
+	 * return false
+	 * </pre>
+	 */
+	public boolean setHP(int newHP) {
+		if(validate(newHP)) {
+			this.HP = newHP;
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * @modifies this.STR
+	 * @effects <pre>
+	 * if newSTR is valid
+	 * set this.STR = newSTR
+	 * return true
+	 * else
+	 * return false
+	 * </pre>
+	 */
+	public boolean setSTR(int newSTR) {
+		if(validate(newSTR)) {
+			this.STR = newSTR;
+			return true;
+		} else {
+			return false;
+		}
+	}
+	/**
+	 * @modifies this.MAG
+	 * @effects <pre>
+	 * if newMAG is valid
+	 * set this.MAG = newMAG
+	 * return true
+	 * else
+	 * return false
+	 * </pre>
+	 */
+	public boolean setMAG(int newMAG) {
+		if(validate(newMAG)) {
+			this.HP = newMAG;
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * @modifies this.DEF
+	 * @effects <pre>
+	 * if newDEF is valid
+	 * set this.DEF = newDEF
+	 * return true
+	 * else
+	 * return false
+	 * </pre>
+	 */
+	public boolean setDEF(int newDEF) {
+		if(validate(newDEF)) {
+			this.DEF = newDEF;
+			return true;
+		} else {
+			return false;
+		}
+	}
+	/**
+	 * @modifies this.RES
+	 * @effects <pre>
+	 * if newRES is valid
+	 * set this.RES = newRES
+	 * return true
+	 * else
+	 * return false
+	 * </pre>
+	 */
+	public boolean setRES(int newRES) {
+		if(validate(newRES)) {
+			this.RES = newRES;
+			return true;
+		} else {
+			return false;
+		}
+	}
+		
+	/**
+	 * @modifies this.SKL
+	 * @effects <pre>
+	 * if newSKL is valid
+	 * set this.SKL = newSKL
+	 * return true
+	 * else
+	 * return false
+	 * </pre>
+	 */
+	public boolean setSKL(int newSKL) {
+		if(validate(newSKL)) {
+			this.SKL = newSKL;
+			return true;
+		} else {
+			return false;
+		}
+	}
+	/**
+	 * @modifies this.SPD
+	 * @effects <pre>
+	 * if newSPD is valid
+	 * set this.SPD = newSPD
+	 * return true
+	 * else
+	 * return false
+	 * </pre>
+	 */
+	public boolean setSPD(int newSPD) {
+		if(validate(newSPD)) {
+			this.SPD = newSPD;
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * @modifies this.LUK
+	 * @effects <pre>
+	 * if newLUK is valid
+	 * set this.LUK = newLUK
+	 * return true
+	 * else
+	 * return false
+	 * </pre>
+	 */
+	public boolean setLUK(int newLUK) {
+		if(validate(newLUK)) {
+			this.LUK = newLUK;
+			return true;
+		} else {
+			return false;
+		}
+	}
+	/**
+	 * @modifies this.MOV
+	 * @effects <pre>
+	 * if newMOV is valid
+	 * set this.MOV = newMOV
+	 * return true
+	 * else
+	 * return false
+	 * </pre>
+	 */
+	public boolean setMOV(int newMOV) {
+		if(validate(newMOV)) {
+			this.MOV = newMOV;
+			return true;
+		} else {
+			return false;
+		}
+	}
+		
+	/**
+	 * @modifies this.CON
+	 * @effects <pre>
+	 * if newCON is valid
+	 * set this.CON = newCON
+	 * return true
+	 * else
+	 * return false
+	 * </pre>
+	 */
+	public boolean setCON(int newCON) {
+		if(validate(newCON)) {
+			this.CON = newCON;
+			return true;
+		} else {
+			return false;
+		}
+	}
+	/**
+	 * @modifies this.LoS
+	 * @effects <pre>
+	 * if newLoS is valid
+	 * set this.LoS = newLoS
+	 * return true
+	 * else
+	 * return false
+	 * </pre>
+	 */
+	public boolean setLoS(int newLoS) {
+		if(validate(newLoS)) {
+			this.LoS = newLoS;
+			return true;
+		} else {
+			return false;
+		}
+	}
+    @Override
+    public String toString() {
+    	String example = String.format("HP%5 STR%5 MAG%5 DEF%5 RES%5 SKL%5 SPD%5 LUK%5 MOV%5 CON%5 LoS%5\n"
+    			+ "%5d %5d %5d %5d %5d %5d %5d %5d %5d %5d %5d", HP, STR, MAG, DEF, RES, SKL, SPD, LUK, MOV, CON, LoS);
+        return example;
+    }
+	public boolean repOK() {
+		if (validate(this.HP) && validate(this.STR) && validate(this.MAG) && validate(this.DEF) && validate(this.RES) && validate(this.SKL) && validate(this.SPD)
+				&& validate(this.LUK) && validate (this.MOV) && validate(this.CON) && validate (this.LoS)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+}
