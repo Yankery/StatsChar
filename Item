@@ -1,0 +1,114 @@
+package Main;
+import utils.*;
+import java.util.ArrayList;
+import java.util.*;
+/**
+ * @overview represent item
+ * @attribute 
+ * name String
+ * stats StatsItem
+ * type String
+ * dmgType enum
+ * counter ArrayList<String>
+ * tempStat EnumMap
+ */
+
+public class Item {
+	//create enum for dmgType
+	public enum dmgType {
+		PHYSICAL, MAGICAL
+	}
+	//create enum for stat
+	public enum statChar {
+		HP,
+		STR,
+		MAG,
+		DEF,
+		RES,
+		SKL,
+		SPD,
+		LUK,
+	}
+	//create specs
+	private String name;
+	private StatsItem stat;
+	private String type;
+	private dmgType dmgType;
+	private ArrayList<String> counter;
+	private EnumMap<statChar, Integer> tempStat;
+	//init Item
+	public Item(String name, StatsItem stat, String type, dmgType dmgType, ArrayList<String> counter, EnumMap<statChar, Integer> tempStat) {
+		if(validateName(name) && validateStat(stat) && validateType(type)) {
+			this.name = name;
+			this.stat = stat;
+			this.type = type;
+			this.dmgType = dmgType;
+			this.counter = counter;
+			this.tempStat = tempStat;
+		} else {
+			throw new NotPossibleException("Invalid data!");
+		}
+	}
+	//validators
+	public boolean validateName(String name) {
+		if (name != null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean validateStat(StatsItem stat) {
+		if(stat.repOK()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean validateType(String type) {
+		if(type != null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	//getter and setter
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public StatsItem getStat() {
+		return stat;
+	}
+	public void setStat(StatsItem stat) {
+		this.stat = stat;
+	}
+	public EnumMap<statChar, Integer> getTempStat() {
+		return tempStat;
+	}
+	public void setTempStat(EnumMap<statChar, Integer> tempStat) {
+		this.tempStat = tempStat;
+	}
+	public String getType() {
+		return type;
+	}
+	public dmgType getDmgType() {
+		return dmgType;
+	}
+	public ArrayList<String> getCounter() {
+		return counter;
+	}
+	
+	public boolean repOK() {
+		if (validateName(this.name) && validateStat(this.stat) && validateType(this.type)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+}
