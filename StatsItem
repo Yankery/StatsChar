@@ -1,0 +1,124 @@
+package Main;
+import utils.*;
+/**
+ * @overview represent item's stat
+ * @attributes 
+ * rank int
+ * might int
+ * hit int
+ * crit int
+ * minRange int
+ * maxRange int
+ * weight int
+ * uses int
+ * cost int
+ * @object a typical StatsItem is stats = <rank, might, hit, crit, range, weight, uses, cost>
+ */
+public class StatsItem {
+	private int rank;
+	private int might;
+	private int hit;
+	private int crit;
+	private int minRange;
+	private int maxRange;
+	private int weight;
+	private int uses;
+	private int cost;
+	
+/**
+ * @effects <pre>
+ * if all specs are valid
+ * initialize this as <rank, might, hit, crit, minRange, maxRange, weight, uses, cost>
+ * else
+ * throw NotPossibleExeption
+ */
+	public StatsItem(int rank, int might, int hit, int crit, int minRange, int maxRange, int weight, int uses, int cost) {
+		if (validate(rank) && validate(might) && validate(hit) && validate(crit) && validate(minRange) && validate(maxRange) && 
+				validate(weight) && validate(uses) && validate(cost)) {
+			this.rank = rank;
+			this.might = might;
+			this.hit = hit;
+			this.crit = crit;
+			this.minRange = minRange;
+			this.maxRange = maxRange;
+			this.weight = weight;
+			this.uses = uses;
+			this.cost = cost;
+		} else {
+			throw new NotPossibleException("Invalid data!");
+		}
+	}
+/**
+ * @effects <pre>
+ * if spec is valid
+ * return true
+ * else
+ * return false
+ * </pre>
+ */
+	public boolean validate(int stat) {
+		if (stat >= 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	//getter and setter
+public int getRank() {
+	return rank;
+}
+public void setRank(int rank) {
+	this.rank = rank;
+}
+public int getMight() {
+	return might;
+}
+public void setMight(int might) {
+	this.might = might;
+}
+public int getHit() {
+	return hit;
+}
+public void setHit(int hit) {
+	this.hit = hit;
+}
+public int getCrit() {
+	return crit;
+}
+public void setCrit(int crit) {
+	this.crit = crit;
+}
+public int getMinRange() {
+	return minRange;
+}
+public void setMinRange(int minRange) {
+	this.minRange = minRange;
+}
+public int getMaxRange() {
+	return maxRange;
+}
+public void setMaxRange(int maxRange) {
+	this.maxRange = maxRange;
+}
+public int getWeight() {
+	return weight;
+}
+public void setWeight(int weight) {
+	this.weight = weight;
+}
+public int getUses() {
+	return uses;
+}
+public void setUses(int uses) {
+	this.uses = uses;
+}
+public int getCost() {
+	return cost;
+}
+public void setCost(int cost) {
+	this.cost = cost;
+}
+
+
+}
+
